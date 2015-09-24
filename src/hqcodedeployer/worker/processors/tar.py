@@ -16,5 +16,5 @@ class TarWorker(ActionProcessor):
         super(TarWorker, self).__init__(worker, "tar", ["file", "dir"])
 
     def work(self):
-        return self.run_command(['/bin/tar', '-zcvf', self.args["file"], "."], cwd=self.args["dir"])
+        return self.run_command(['/bin/tar', '--exclude=.git*', '--exclude=tmp/*', '--exclude=./log*', '-zcf', self.args["file"], "."], cwd=self.args["dir"])
 
