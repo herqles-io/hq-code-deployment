@@ -13,6 +13,8 @@ from hqcodedeployer.worker.processors.gem import Copy as GemCopy
 from hqcodedeployer.worker.processors.pip import Install as PipInstall, Wheel as PipWheel
 from hqcodedeployer.worker.processors.puppet import PuppetWorker
 from hqcodedeployer.worker.processors.source import SourceWorker
+from hqcodedeployer.worker.processors.chown import ChownWorker
+from hqcodedeployer.worker.processors.chmod import ChmodWorker
 
 processors = {
     'mkdir': MkDirWorker,
@@ -33,5 +35,7 @@ processors = {
     "pip:install": PipInstall,
     "pip:wheel": PipWheel,
     "puppet": PuppetWorker,
-    "source": SourceWorker
+    "source": SourceWorker,
+    "chown": ChownWorker,
+    "chmod": ChmodWorker,
 }

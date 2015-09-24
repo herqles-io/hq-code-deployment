@@ -7,4 +7,9 @@ class ChmodWorker(ActionProcessor):
         super(ChmodWorker, self).__init__(worker, "chmod", ["options", "mode", "file"])
 
     def work(self):
-        return self.run_command(['chmod', self.args["options"], self.args["mode"], self.args["file"]])
+        if self.args["options"] is not None:
+            cmd_list = ['chmod', self.args["options"], self.args["mode"], self.args["file"]]
+        else:
+            cmd_list = ['chmod', self.args["mode"], self.args["file"]]
+
+        return self.run_command(cmd_list)
