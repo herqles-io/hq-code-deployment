@@ -17,10 +17,7 @@ class TarWorker(ActionProcessor):
 
     def work(self):
         if 'extra_args' in self.args:
-            extra_args = self.args['extra_args']
-            if not is_instance(extra_args, list):
-                extra_args = [extra_args]
-
+            extra_args = self.args['extra_args'].split()
             cmd_list = ['/bin/tar'] + extra_args + ['-zcf', self.args["file"], '.']
         else:
             cmd_ist = ['/bin/tar', '-zcf', self.args["file"], '.']
