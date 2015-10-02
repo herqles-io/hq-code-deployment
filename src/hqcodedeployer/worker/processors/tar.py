@@ -13,8 +13,17 @@ class UnTarWorker(ActionProcessor):
 class TarWorker(ActionProcessor):
 
     def __init__(self, worker):
-        super(TarWorker, self).__init__(worker, "tar", ["file", "dir"])
+        super(TarWorker, self).__init__(worker, "tar", ["extra_args", "file", "dir"])
 
     def work(self):
-        return self.run_command(['/bin/tar', '--exclude=.git*', '--exclude=tmp/*', '--exclude=./log*', '-zcf', self.args["file"], "."], cwd=self.args["dir"])
+        if 'extra_args' in self.args:
+            extra_args = self.args['extra_args']
+            if not is_instance(extra_args, list):
+                extra_args = [extra_args]
+
+            cmd_list = ['/bin/tar'] + extra_args + ['-zcf', self.args["file"], '.']
+        else:
+            cmd_ist = ['/bin/tar', '-zcf', self.args["file"], '.']
+
+        return self.run_command(cmd_list, cwd=self.args["dir"])
 
