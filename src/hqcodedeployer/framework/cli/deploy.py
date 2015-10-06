@@ -120,8 +120,8 @@ class Plugin(AbstractPlugin):
                     self.logger.error(r.text)
                     sys.exit(1)
 
-                data = json.loads(r.text)
-                status = data['status']
+                rdata = json.loads(r.text)
+                status = rdata['status']
 
                 time.sleep(5)
 
