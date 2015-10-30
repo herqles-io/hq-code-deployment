@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='hq-code-deployer',
-    version='1.0.1',
+    version='1.0.2',
     url='',
     include_package_data=True,
     license='',
